@@ -1,0 +1,34 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__title {
+  font-family: "Roboto Slab";
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: left;
+}
+
+.header__interactive {
+  display: flex;
+  font-family: "Roboto";
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: center;
+}
+
+.header__home-button {
+  border-style: none;
+  cursor: pointer;
+}
+
+.header__signin-button {
+  border-radius: 25px;
+  border: 2px solid white;
+  width: 1766px;
+  height: 48px;
+  appearance: none;
+}

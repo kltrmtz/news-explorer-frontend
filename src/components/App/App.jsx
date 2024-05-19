@@ -1,8 +1,11 @@
 import { useState } from "react";
-// import reactLogo from "./assets/react.svg";
+import { Switch, Route } from "react-router-dom/cjs/react-router-dom.js";
+import reactLogo from "/src/assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import Header from "../Header/Header.jsx";
+// import Main from "../Main/Main.jsx";
+import Footer from "../Footer/Footer.jsx";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -15,15 +18,40 @@ function App() {
       // onCreateSignInModal={handleSignInModal}
       // isLoggedIn={isLoggedIn}
       />
+      {/* <Switch>
+        <Route exact path="/">
+          <Main
+            onSelectedCard={handleSelectedCard}
+            handleCardDelete={handleCardDelete}
+            clothingItems={clothingItems}
+            cards={clothingItems}
+            onCardLike={handleCardLike}
+          />
+        </Route>
+        <Route path="/Articles">
+          <ProtectedRoute isLoggedIn={isLoggedIn} path="/Articles">
+            <Articles
+              onSelectedCard={handleSelectedCard}
+              onCreateModal={handleCreateModal}
+              currentUser={currentUser}
+              isLoggedIn={isLoggedIn}
+              onChangeProfileData={handleEditProfileModal}
+              onBookMark={handleBookMark}
+              onLogOut={handleLogOut}
+            />
+          </ProtectedRoute>
+        </Route>
+      </Switch> */}
+
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
         <a href="https://react.dev" target="_blank">
-          {/* <img src={reactLogo} className="logo react" alt="React logo" /> */}
+          <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Eat Shit Corinne</h1>
+      <h1>Eat Shit Corn</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
@@ -35,6 +63,8 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+
+      <Footer />
     </>
   );
 }

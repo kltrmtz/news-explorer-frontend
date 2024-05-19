@@ -1,5 +1,5 @@
 import "./Header.css";
-// import { Link } from "react-router-dom/cjs/react-router-dom";
+import { Link } from "react-router-dom/cjs/react-router-dom";
 import logout from "/src/images/logout.svg";
 
 const Header = ({ onCreateModal, isLoggedIn }) => {
@@ -16,6 +16,15 @@ const Header = ({ onCreateModal, isLoggedIn }) => {
         </div>
       </div>
       <div className="header__interactive">
+        <div>
+          <button
+            className="header__home-button"
+            type="text"
+            // onClick={onCreateModal}
+          >
+            Home
+          </button>
+        </div>
         {isLoggedIn && (
           <div>
             <button

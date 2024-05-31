@@ -1,0 +1,122 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: #fff;
+  background-size: 328px;
+  background: center no-repeat;
+  border-radius: 19px;
+  width: 400px;
+  height: 576px;
+}
+
+.card__content {
+  position: relative;
+  background-color: white;
+  border-radius: 25px;
+  overflow: hidden;
+  width: 400px;
+  min-height: 576px;
+}
+
+.card__name {
+  position: absolute;
+  background-color: white;
+  font-family: "Roboto";
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.7;
+  color: black;
+  text-align: center;
+  border-radius: 10px;
+  top: 24px;
+  left: 24px;
+  padding: 8px 22px;
+}
+
+.card__image {
+  width: 400px;
+  height: 272px;
+  border-top-left-radius: 19px;
+  border-top-right-radius: 19px;
+}
+
+.card__date {
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  margin: 20px 0 0 24px;
+}
+
+.card__title {
+  font-family: "Roboto-Slab";
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 30px;
+  width: 352px;
+  margin: 12px 24px 0 24px;
+}
+
+.card__description {
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  width: 352px;
+  margin: 16px 24px 0 24px;
+}
+
+.card__owner {
+  position: absolute;
+  font-family: "Roboto-Slab";
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  bottom: 0;
+  left: 24px;
+}
+
+.card__save-button {
+  position: absolute;
+  background-image: url("src/images/bookmark.svg");
+  background-color: #fff;
+  background: center no-repeat;
+  border: none;
+  border-radius: 8px;
+  top: 24px;
+  right: 24px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+}
+
+.card__save-button_active {
+  background-image: url("src/images/bookmarked.svg");
+  cursor: pointer;
+}
+
+.card__save-button_active:hover {
+  background-image: url("src/images/bookmarkhover.svg");
+  cursor: pointer;
+}
+
+.card__delete-button {
+  position: absolute;
+  background-image: url("src/images/trash.svg");
+  background-color: #fff;
+  background: center no-repeat;
+  top: 24px;
+  right: 24px;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.card__delete-button:hover {
+  background-image: url("src/images/trashhover.svg");
+  cursor: pointer;
+}

@@ -10,7 +10,9 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div></div>
-      <div>&copy; {date} Supersite, Powered by News API</div>
+      <div className="footer__copyright">
+        &copy; {date} Supersite, Powered by News API
+      </div>
       <div className="footer__content">
         <ul className="footer__list">
           <li className="footer__list-item">
@@ -27,7 +29,7 @@ const Footer = () => {
             </a>
           </li>
 
-          <li className="footer__list-item">
+          <li className="footer__list-item-">
             <a href="https://www.facebook.com/" className="footer__link">
               <img
                 src={facebook}

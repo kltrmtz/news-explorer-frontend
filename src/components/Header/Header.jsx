@@ -1,6 +1,7 @@
 import "./Header.css";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import logout from "/src/images/logout.svg";
+import stroke from "/src/images/stroke.svg";
 
 const Header = ({ onCreateModal, isLoggedIn }) => {
   console.log("Header");
@@ -16,7 +17,7 @@ const Header = ({ onCreateModal, isLoggedIn }) => {
         </div>
       </div>
       <div className="header__interactive">
-        <div>
+        <div className="header__home-content">
           <button
             className="header__home-button"
             type="text"
@@ -24,6 +25,7 @@ const Header = ({ onCreateModal, isLoggedIn }) => {
           >
             Home
           </button>
+          <img className="header__home-stroke" alt="stroke" src={stroke}></img>
         </div>
         {isLoggedIn && (
           <div>

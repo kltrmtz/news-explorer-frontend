@@ -1,14 +1,19 @@
 .header {
   display: flex;
   justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .header__title {
+  color: #fff;
   font-family: "Roboto Slab";
   font-size: 20px;
   font-weight: 700;
   line-height: 24px;
   text-align: left;
+  margin-top: 30px;
+  margin-bottom: 26px;
+  margin-left: 104px;
 }
 
 .header__interactive {
@@ -17,18 +22,40 @@
   font-size: 18px;
   font-weight: 500;
   line-height: 24px;
-  text-align: center;
+  align-items: center;
+  margin-right: 104px;
+  margin-top: 19px;
+  margin-bottom: 13px;
+}
+
+.header__home-content {
+  position: relative;
 }
 
 .header__home-button {
+  color: #fff;
   border-style: none;
   cursor: pointer;
+  background-color: transparent;
+  margin-right: 42px;
+  padding: 0;
+}
+
+.header__home-stroke {
+  position: absolute;
+  width: 68px;
+  height: 3px;
+  bottom: -25px;
+  right: 30px;
 }
 
 .header__signin-button {
+  color: #fff;
   border-radius: 25px;
-  border: 2px solid white;
-  width: 1766px;
+  border: 1px solid white;
+  width: 176px;
   height: 48px;
   appearance: none;
+  padding: 0;
+  background-color: transparent;
 }

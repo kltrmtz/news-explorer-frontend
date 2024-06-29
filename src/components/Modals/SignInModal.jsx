@@ -34,14 +34,14 @@ const SigninModal = ({ isOpen, onClose, onSubmit, linkToSignUp }) => {
       className="signIn"
     >
       <div className="modal__form">
-        <label>
-          Enter email
+        <label className="modal__form-label">
+          Email
           <input
             className="modal__form-input"
             type="text"
             name="email"
             id="modal-email-input"
-            placeholder="Email"
+            placeholder="Enter email"
             minLength="1"
             maxLength="30"
             value={email}
@@ -49,14 +49,14 @@ const SigninModal = ({ isOpen, onClose, onSubmit, linkToSignUp }) => {
             required
           />
         </label>
-        <label>
-          Enter password
+        <label className="modal__form-label">
+          Password
           <input
             className="modal__form-input"
             type="text"
             name="password"
             id="modal-password-input"
-            placeholder="Password"
+            placeholder="Enter password"
             minLength="1"
             maxLength="30"
             value={password}
@@ -68,9 +68,16 @@ const SigninModal = ({ isOpen, onClose, onSubmit, linkToSignUp }) => {
           <button className="modal__button" type="submit">
             Sign In
           </button>
-          <button className="modal__link" type="button" onClick={linkToSignUp}>
-            or Sign Up
-          </button>
+          <div className="modal__link">
+            or
+            <button
+              className="modal__link-button"
+              type="button"
+              onClick={linkToSignUp}
+            >
+              Sign up
+            </button>
+          </div>
         </div>
       </div>
     </ModalWithForm>

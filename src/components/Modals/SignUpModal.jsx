@@ -1,7 +1,14 @@
 import ModalWithForm from "./ModalWithForm.jsx";
 import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 
-const SignUpModal = ({ isOpen, onClose, onSubmit, linkToSignIn }) => {
+const SignUpModal = ({
+  isOpen,
+  onClose,
+  onSubmit,
+  linkToSignIn,
+  serverError,
+}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -24,6 +31,12 @@ const SignUpModal = ({ isOpen, onClose, onSubmit, linkToSignIn }) => {
     onSubmit({ email, password, name });
   };
 
+  const {
+    // register,
+    // handleSubmit,
+    formState: { isValid },
+  } = useForm();
+
   useEffect(() => {
     if (isOpen) {
       setEmail("");
@@ -40,9 +53,10 @@ const SignUpModal = ({ isOpen, onClose, onSubmit, linkToSignIn }) => {
       isOpen={isOpen}
       className="register"
       onSubmit={handleSubmit}
+      isValid={isValid}
     >
       <div className="modal__form">
-        <label>
+        <label className="modal__form-label">
           Email
           <input
             className="modal__form-input"
@@ -57,7 +71,7 @@ const SignUpModal = ({ isOpen, onClose, onSubmit, linkToSignIn }) => {
             required
           />
         </label>
-        <label>
+        <label className="modal__form-label">
           Password
           <input
             className="modal__form-input"
@@ -72,7 +86,7 @@ const SignUpModal = ({ isOpen, onClose, onSubmit, linkToSignIn }) => {
             required
           />
         </label>
-        <label>
+        <label className="modal__form-label">
           Username
           <input
             className="modal__form-input"
@@ -87,12 +101,23 @@ const SignUpModal = ({ isOpen, onClose, onSubmit, linkToSignIn }) => {
           />
         </label>
         <div className="modal__buttons">
-          <button className="modal__button" type="submit">
+          <button
+            className="modal__button : modal__button-disabled"
+            type="submit"
+            disabled={!isValid}
+          >
             Sign Up
           </button>
-          <button className="modal__link" type="button" onClick={linkToSignIn}>
-            or Sign in
-          </button>
+          <div className="modal__link">
+            or
+            <button
+              className="modal__link-button"
+              type="button"
+              onClick={linkToSignIn}
+            >
+              Sign in
+            </button>
+          </div>
         </div>
       </div>
     </ModalWithForm>
@@ -100,3 +125,24 @@ const SignUpModal = ({ isOpen, onClose, onSubmit, linkToSignIn }) => {
 };
 
 export default SignUpModal;
+
+// import { useForm } from 'react-hook-form';
+
+// function App() {
+//   const {
+//     register,
+//     handleSubmit,
+//     formState: { errors },
+//   } = useForm();
+
+//   return (
+//     <form onSubmit={handleSubmit((data) => console.log(data))}>
+//       <input {...register('firstName')} />
+//       <input {...register('lastName', { required: true })} />
+//       {errors.lastName && <p>Last name is required.</p>}
+//       <input {...register('age', { pattern: /\d+/ })} />
+//       {errors.age && <p>Please enter number for age.</p>}
+//       <input type="submit" />
+//     </form>
+//   );
+// }

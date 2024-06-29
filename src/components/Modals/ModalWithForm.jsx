@@ -1,15 +1,17 @@
 import "./ModalWithForm.css";
+import { useForm } from "react-hook-form";
 
 const ModalWithForm = ({
   children,
-  buttonText,
   title,
   name,
   onClose,
   onSubmit,
+  handleOverlay,
+  isLoading,
 }) => {
   return (
-    <div className={`modal modal_type_${name}`}>
+    <div className={`modal modal_type_${name}`} onClick={handleOverlay}>
       <div className="modal__content">
         <form onSubmit={onSubmit}>
           <h3 className="modal__heading">{title}</h3>

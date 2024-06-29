@@ -1,12 +1,27 @@
 import "./Main.css";
-import { useMemo, useContext } from "react";
+import { useContext } from "react";
+import SearchResultsContext from "/src/contexts/SearchResultsContext.js";
+import SearchedContext from "/src/contexts/SearchedContext.js";
 import About from "../About/About.jsx";
-import SearchField from "../SearchFieldForm/SearchFieldForm.jsx";
-import SearchResults from "../SearchResults/SearchResults.jsx";
+import SearchForm from "../SearchForm/SearchForm.jsx";
+import NewsCardList from "../NewsCardList/NewsCardList.jsx";
 import Preloader from "../Preloader/Preloader.jsx";
 import NothingFound from "../NothingFound/NothingFound.jsx";
 
-const Main = ({ onSelectedCard, onCardLike, isLoggedIn }) => {
+const Main = ({
+  onSelectedCard,
+  onCardLike,
+  isLoggedIn,
+  loading,
+  handleCardSave,
+  handleCardDelete,
+  handleSearch,
+  searchError,
+  onSignUp,
+}) => {
+  const searched = useContext(SearchedContext);
+  const searchResults = useContext(SearchResultsContext);
+
   return (
     <main className="main">
       <section className="main__search">
@@ -16,22 +31,31 @@ const Main = ({ onSelectedCard, onCardLike, isLoggedIn }) => {
             Find the latest news on any topic and save them in your personal
             account.
           </p>
-          <SearchField />
-          {/* {filteredCards.map((item) => (
-            <ItemCard
-              key={item._id}
-              item={item}
-              onSelectedCard={onSelectedCard}
-              onCardLike={onCardLike}
-              isLoggedIn={isLoggedIn}
-            />
-          ))} */}
+          <SearchForm handleSearch={handleSearch} />
         </div>
       </section>
       <section className="main__results">
-        <Preloader />
-        <SearchResults />
-        <NothingFound />
+        <div>
+          {searched && searchResults.length > 0 ? (
+            <NewsCardList
+              onSignUp={onSignUp}
+              handleCardSave={handleCardSave}
+              handleCardDelete={handleCardDelete}
+            ></NewsCardList>
+          ) : searched && searchResults.length === 0 ? (
+            <NothingFound />
+          ) : loading ? (
+            <Preloader />
+          ) : searchError === true ? (
+            <p>
+              Sorry, something went wrong during the request. There may be a
+              connection issue or the server may be down. Please try again
+              later.
+            </p>
+          ) : (
+            ""
+          )}
+        </div>
       </section>
       <section className="main__about">
         <About />

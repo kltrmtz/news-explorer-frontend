@@ -1,8 +1,13 @@
 import "./RegisterConfirmationModal.css";
+import "./ModalWithForm.css";
 
-const RegisterConfirmationModal = ({ onClose, linkToSignIn }) => {
+const RegisterConfirmationModal = ({
+  onClose,
+  linkToSignIn,
+  handleOverlay,
+}) => {
   return (
-    <div className="register__modal">
+    <div className="register__modal" onClick={handleOverlay}>
       <div className="register__modal-content">
         <button
           className="modal__close-button"
@@ -13,8 +18,12 @@ const RegisterConfirmationModal = ({ onClose, linkToSignIn }) => {
           Registration successfully completed!
         </div>
         <div>
-          <button className="modal__link" type="button" onClick={linkToSignIn}>
-            or Sign in
+          <button
+            className="modal__link modal__link-button"
+            type="button"
+            onClick={linkToSignIn}
+          >
+            Sign in
           </button>
         </div>
       </div>

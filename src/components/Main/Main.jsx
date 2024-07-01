@@ -36,13 +36,13 @@ const Main = ({
       </section>
       <section className="main__results">
         <div>
-          {searched && searchResults.length > 0 ? (
+          {searched && searchResults?.length > 0 ? (
             <NewsCardList
               onSignUp={onSignUp}
               handleCardSave={handleCardSave}
               handleCardDelete={handleCardDelete}
             ></NewsCardList>
-          ) : searched && searchResults.length === 0 ? (
+          ) : searched && searchResults?.length === 0 ? (
             <NothingFound />
           ) : loading ? (
             <Preloader />

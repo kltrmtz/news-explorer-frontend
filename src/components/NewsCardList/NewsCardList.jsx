@@ -19,7 +19,7 @@ const NewsCardList = ({ handleCardSave, handleCardDelete, onSignIn }) => {
         <>
           <h2 className="results__title">Search results</h2>
           <div className="results__cards">
-            {searchResults.slice(0, cardRendered).map((card) => {
+            {searchResults?.slice(0, cardRendered).map((card) => {
               return (
                 <NewsCard
                   key={card.url}
@@ -33,7 +33,7 @@ const NewsCardList = ({ handleCardSave, handleCardDelete, onSignIn }) => {
           </div>
           <button
             className={`results__button ${
-              cardRendered < searchResults.length
+              cardRendered < searchResults?.length
                 ? "results__button_hidden"
                 : ""
             }`}

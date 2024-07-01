@@ -2,7 +2,7 @@ import "./SearchForm.css";
 import { useForm } from "react-hook-form";
 
 const SearchForm = ({ handleSearch }) => {
-  const { handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const handleSearchButton = ({ keyword }) => {
     handleSearch({ keyword });
@@ -19,6 +19,8 @@ const SearchForm = ({ handleSearch }) => {
           className="searchField__input"
           type="search"
           placeholder="Enter topic"
+          name="keyword"
+          {...register("keyword", { required: "please enter a keyword" })}
         />
         <button
           className="searchField__button"

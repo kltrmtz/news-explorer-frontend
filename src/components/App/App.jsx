@@ -17,12 +17,7 @@ import SignUpModal from "../Modals/SignUpModal.jsx";
 import RegisterConfirmationModal from "../Modals/RegisterConfirmationModal.jsx";
 // import api from "/src/utils/api.js";
 // import auth from "/src/utils/auth.js";
-import {
-  getSavedCards,
-  saveArticle,
-  getCards,
-  articles,
-} from "/src/utils/api.js";
+import { getSavedCards, saveArticle } from "/src/utils/api.js";
 import { authorize, checkToken } from "/src/utils/auth.js";
 import { getSearchResults } from "/src/utils/newsApi.js";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
@@ -236,7 +231,7 @@ function App() {
   const handleSearch = ({ keyword }) => {
     setKeyword(keyword);
     setSearching(true);
-    getCards(keyword)
+    getSearchResults(keyword)
       .then((res) => {
         console.log(res);
         setSearchResults(res.articles);

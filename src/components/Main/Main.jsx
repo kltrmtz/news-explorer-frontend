@@ -18,6 +18,7 @@ const Main = ({
   handleSearch,
   searchError,
   onSignUp,
+  onCreateSignInModal,
 }) => {
   const searched = useContext(SearchedContext);
   const searchResults = useContext(SearchResultsContext);
@@ -41,6 +42,7 @@ const Main = ({
               onSignUp={onSignUp}
               handleCardSave={handleCardSave}
               handleCardDelete={handleCardDelete}
+              onCreateSignInModal={onCreateSignInModal}
             ></NewsCardList>
           ) : searched && searchResults?.length === 0 ? (
             <NothingFound />

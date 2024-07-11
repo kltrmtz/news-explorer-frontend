@@ -8,7 +8,8 @@ const ModalWithForm = ({
   onClose,
   onSubmit,
   handleOverlay,
-  isLoading,
+  buttonText,
+  // disabled = { isValid },
 }) => {
   return (
     <div className={`modal modal_type_${name}`} onClick={handleOverlay}>
@@ -22,8 +23,11 @@ const ModalWithForm = ({
           />
           {children}
           {/* <button
-            className="modal__button modal__button_disabled"
             type="submit"
+            disabled={!isValid}
+            className={`modal__button ${
+              isValid === true ? "modal__button-disabled" : ""
+            }`}
           >
             {buttonText}
           </button> */}

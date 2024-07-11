@@ -1,9 +1,19 @@
 import ModalWithForm from "./ModalWithForm.jsx";
 import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 
 const SigninModal = ({ isOpen, onClose, onSubmit, linkToSignUp }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const {
+    // register,
+    // handleSubmit,
+
+    formState: { isValid },
+  } = useForm();
+
+  console.log(isValid);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -14,7 +24,7 @@ const SigninModal = ({ isOpen, onClose, onSubmit, linkToSignUp }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ email, password });
+    onSubmit({ email, password, isValid });
   };
 
   useEffect(() => {
@@ -65,7 +75,13 @@ const SigninModal = ({ isOpen, onClose, onSubmit, linkToSignUp }) => {
           />
         </label>
         <div className="modal__buttons">
-          <button className="modal__button" type="submit">
+          <button
+            type="submit"
+            disabled={!isValid}
+            className={`modal__button ${
+              isValid ? "modal__button-disabled" : ""
+            }`}
+          >
             Sign In
           </button>
           <div className="modal__link">

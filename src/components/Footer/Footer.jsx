@@ -1,6 +1,7 @@
 import "./Footer.css";
 import facebook from "/src/images/fb.svg";
 import github from "/src/images/github.svg";
+import { Link } from "react-router-dom/cjs/react-router-dom";
 
 const date = new Date().getFullYear();
 
@@ -16,12 +17,9 @@ const Footer = () => {
       <div className="footer__content">
         <ul className="footer__list">
           <li className="footer__list-item">
-            <a href="#" className="footer__link">
-              Home
-            </a>
-            {/* <Link to="/">
-              <div className="header__link">Home</div>
-            </Link> */}
+            <Link to="/">
+              <div className="footer__link">Home</div>
+            </Link>
           </li>
           <li className="footer__list-item">
             <a href="https://tripleten.com/" className="footer__link">

@@ -15,9 +15,14 @@ import Footer from "../Footer/Footer.jsx";
 import SignInModal from "../Modals/SignInModal.jsx";
 import SignUpModal from "../Modals/SignUpModal.jsx";
 import RegisterConfirmationModal from "../Modals/RegisterConfirmationModal.jsx";
+import MobileModal from "../Modals/MobileModal.jsx";
 // import api from "/src/utils/api.js";
 // import auth from "/src/utils/auth.js";
-import { getSavedCards, saveArticle } from "/src/utils/api.js";
+import {
+  getSavedCards,
+  saveArticle,
+  removeSaveArticle,
+} from "/src/utils/api.js";
 import { authorize, checkToken } from "/src/utils/auth.js";
 import { getSearchResults } from "/src/utils/newsApi.js";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
@@ -72,6 +77,10 @@ function App() {
 
   const handleSignInModal = () => {
     setActiveModal("login");
+  };
+
+  const handleMobileModal = () => {
+    setActiveModal("mobile");
   };
 
   // handle redirect user
@@ -169,7 +178,7 @@ function App() {
     setLoading(true);
     request()
       .then(() => {
-        if (activeModal === "registerModal") {
+        if (activeModal === "register") {
           setServerError(false);
         } else {
           setServerError(false);
@@ -248,29 +257,75 @@ function App() {
 
   // handle card save unsave
 
-  const handleCardSave = (id, isSaved) => {
-    const token = localStorage.getItem("jwt");
-    !isSaved
-      ? api
-          .addCardSave(id, token)
-          .then((updatedCard) => {
-            setSavedCards((cards) =>
-              cards.map((item) =>
-                item._id === updatedCard.data._id ? updatedCard.data : item
-              )
-            );
-          })
-          .catch((err) => console.log(err))
-      : api
-          .removeCardSave(id, token)
-          .then((updatedCard) => {
-            setSavedCards((cards) =>
-              cards.map((item) =>
-                item._id === updatedCard.data._id ? updatedCard.data : item
-              )
-            );
-          })
-          .catch((err) => console.log(err));
+  // const handleCardSave = (id, isSaved) => {
+  //   const token = localStorage.getItem("jwt");
+  //   !isSaved
+  //     ? api
+  //         .addCardSave(id, token)
+  //         .then((updatedCard) => {
+  //           setSavedCards((cards) =>
+  //             cards.map((item) =>
+  //               item._id === updatedCard.data._id ? updatedCard.data : item
+  //             )
+  //           );
+  //         })
+  //         .catch((err) => console.log(err))
+  //     : api
+  //         .removeCardSave(id, token)
+  //         .then((updatedCard) => {
+  //           setSavedCards((cards) =>
+  //             cards.map((item) =>
+  //               item._id === updatedCard.data._id ? updatedCard.data : item
+  //             )
+  //           );
+  //         })
+  //         .catch((err) => console.log(err));
+  // };
+
+  // const isSaved = savedCards.find((article) => {
+  //   article.link === cardData.url;
+  // });
+
+  // new sub out save
+  console.log(savedCards);
+  console.log(isLoggedIn);
+
+  // const handleCardSave = (cardData, keyword, isSaved) => {
+  //   // const token = localStorage.getItem("jwt");
+  //   !isSaved
+  //     ? api
+  //         .saveArticle(cardData, keyword)
+  //         .then((savedCard) => {
+  //           setSavedCards((cards) => [...cards, savedCard]);
+  //         })
+  //         .catch((err) => console.log(err))
+  //     : api
+  //         .removeSaveArticle(cardData, keyword)
+  //         .then((savedCard) => {
+  //           setSavedCards((cards) =>
+  //             cards.filter((card) => card._id !== savedCard._id)
+  //           );
+  //         })
+  //         .catch((err) => console.log(err));
+  // };
+
+  const handleCardSave = ({ cardData, keyword, isSaved }) => {
+    // const token = localStorage.getItem("jwt");
+    if (!isSaved) {
+      saveArticle(cardData, keyword)
+        .then((savedCard) => {
+          setSavedCards((cards) => [...cards, savedCard]);
+        })
+        .catch((err) => console.log(err));
+    } else if (isSaved) {
+      removeSaveArticle({ cardData, keyword })
+        .then((savedCard) => {
+          setSavedCards((cards) =>
+            cards.filter((card) => card._id !== savedCard._id)
+          );
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   // use effects
@@ -298,7 +353,7 @@ function App() {
 
   useEffect(() => {
     const handleOverlay = (e) => {
-      if (e.target.classList.contains("modal")) {
+      if (e.target.classList.contains("modal", "modal__mobile")) {
         handleCloseModal();
       }
     };
@@ -351,11 +406,7 @@ function App() {
             setSavedCards(articles);
           });
         })
-        // .then(() => {
-        //   getSavedArticles(jwt).then((articles) => {
-        //     setSavedArticles(articles);
-        //   });
-        // })
+
         .catch((error) => {
           console.log(error);
         });
@@ -381,6 +432,7 @@ function App() {
                       onCreateSignInModal={handleSignInModal}
                       isLoggedIn={isLoggedIn}
                       onLogOut={handleLogOut}
+                      onOpenMobileMenu={handleMobileModal}
                     />
 
                     <Route exact path="/">
@@ -388,16 +440,15 @@ function App() {
                         isLoggedIn={isLoggedIn}
                         onSelectedCard={handleSelectedCard}
                         handleCardDelete={handleCardDelete}
-                        // clothingItems={clothingItems}
-                        // cards={clothingItems}
-
                         handleSearch={handleSearch}
                         loading={searching}
                         searchError={searchError}
-                        onCardSave={handleCardSave}
+                        handleCardSave={handleCardSave}
                         onSignIn={handleSignInModal}
+                        onCreateModal={handleCreateModal}
+                        onCreateSignInModal={handleSignInModal}
                       />
-                      <NewsCardList />
+                      {/* <NewsCardList onCreateModal={handleCreateModal} /> */}
                     </Route>
                   </div>
                   <Route path="/saved-news">
@@ -407,8 +458,8 @@ function App() {
                         handleCardDelete={handleCardDelete}
                         onCreateModal={handleCreateModal}
                         currentUser={currentUser}
-                        // onChangeProfileData={handleEditProfileModal}
                         // onBookMark={handleBookMark}
+                        handleCardSave={handleCardSave}
                         onLogOut={handleLogOut}
                         isSaved={isSaved}
                       />
@@ -443,6 +494,18 @@ function App() {
                       linkToSignUp={handleRedirectUser}
                       loading={loading}
                       onSubmit={handleLogin}
+                    />
+                  )}
+                  {activeModal === "mobile" && (
+                    <MobileModal
+                      onCreateModal={handleMobileModal}
+                      onClose={handleCloseModal}
+                      isOpen={activeModal === "mobile"}
+                      linkToSignIn={handleRedirectUser}
+                      onSubmit={handleLogin}
+                      onCreateSignInModal={handleSignInModal}
+                      isLoggedIn={isLoggedIn}
+                      onLogOut={handleLogOut}
                     />
                   )}
                 </div>

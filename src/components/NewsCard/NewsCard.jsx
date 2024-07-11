@@ -1,10 +1,4 @@
 import "./NewsCard.css";
-import bookmark from "/src/images/bookmark.svg";
-import bookmarked from "/src/images/bookmarked.svg";
-import bookmarkhover from "/src/images/bookmarkhover.svg";
-import trash from "/src/images/trash.svg";
-import trashhover from "/src/images/trashhover.svg";
-// import cardimage from "/src/images/image_08.svg";
 import { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import CurrentPageContext from "/src/contexts/CurrentPageContext.js";
@@ -16,52 +10,39 @@ const NewsCard = ({
   cardData,
   handleCardSave,
   handleCardDelete,
-  item,
-  onSelectedCard,
-  isLoggedIn,
-  onSignIn,
+  onCreateSignInModal,
 }) => {
+  const { isLoggedIn } = useContext(CurrentUserContext);
   const { currentPage, setCurrentPage } = useContext(CurrentPageContext);
-  // const { isLoggedIn } = useContext(CurrentUserContext);
   const { keyword } = useContext(KeywordContext);
-  const { savedCards, setSavedCards } = useContext(SavedCardContext);
+  const { savedCards } = useContext(SavedCardContext);
   const [isHovered, setIsHovered] = useState(false);
   const location = useLocation();
-  // const id = image._id;
+  const id = cardData._id;
 
-  const isSaved = savedCards.find((article) => {
-    article.link === cardData.url;
+  console.log(savedCards);
+
+  const isSaved = savedCards.some((article) => {
+    return article.url === cardData.url;
   });
 
   const cardButtonClassName = `${
-    isSaved
-      ? "card__save-button card__save-button_active"
-      : "card__delete-button"
+    isSaved ? "card__save-button card__save-button_active" : "card__save-button"
   }`;
 
-  // const isLiked = item.likes.some((id) => {
-  //   return id === currentUser?._id;
-  // });
-
-  // const itemSaveButtonClassName = `${
-  //   isSaved ? "card__save-button card__save-button_active" : "card__save-button"
-  // }`;
+  console.log({ isSaved });
 
   const handleBookmark = () => {
-    // handleSave(id, isSaved);
+    console.log(cardData);
     const token = localStorage.getItem("jwt");
-    handleCardSave({ keyword, cardData, token, isSaved });
+    // debugger;
+    handleCardSave({ keyword, cardData, token, id, isSaved });
   };
 
   const handleBookmarkDelete = () => {
     const token = localStorage.getItem("jwt");
     handleCardDelete({ cardData, token });
   };
-
-  // const currentDate = new Date().toLocaleString("default", {
-  //   month: "long",
-  //   day: "numeric",
-  // });
 
   const publicationDate = new Date(
     cardData.publishedAt || cardData.date
@@ -70,10 +51,6 @@ const NewsCard = ({
     day: "numeric",
     year: "numeric",
   });
-
-  // const onCardClick = () => {
-  //   onSelectedCard(item);
-  // };
 
   // useEffect(() => {
   //   const jwt = localStorage.getItem("jwt");
@@ -85,6 +62,8 @@ const NewsCard = ({
   useEffect(() => {
     setCurrentPage(location.pathname);
   }, [location.pathname, setCurrentPage]);
+
+  console.log(isLoggedIn);
 
   return (
     <section className="card">
@@ -98,14 +77,12 @@ const NewsCard = ({
               className={`card__message ${
                 isHovered ? "" : "card__message_hidden"
               }`}
+              onClick={onCreateSignInModal}
             >
               Sign in to save articles
             </div>
             <button
-              // className="bookmark"
               className="card__save-button"
-              src={bookmark}
-              onClick={onSignIn}
               onMouseOver={() => {
                 setIsHovered(true);
               }}
@@ -127,7 +104,6 @@ const NewsCard = ({
             </div>
             <button
               className="card__delete-button"
-              src={trash}
               onClick={handleBookmarkDelete}
               onMouseOver={() => {
                 setIsHovered(true);

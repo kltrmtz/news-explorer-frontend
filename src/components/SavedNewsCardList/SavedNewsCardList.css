@@ -29,5 +29,7 @@
 
   .saved__cards-content {
     gap: 10px;
+    justify-content: center;
+    padding: 24px 16px 12px;
   }
 }

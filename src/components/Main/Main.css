@@ -8,7 +8,6 @@
   background-position: top;
   background-size: inherit;
   max-width: 1440px;
-  /* width: 100%; */
   margin: 0 auto;
 }
 
@@ -29,7 +28,6 @@
   line-height: 64px;
   margin: auto;
   margin-top: 80px;
-  /* padding: 80px 416px 0; */
   max-width: 608px;
   max-height: 128px;
   width: 100%;
@@ -44,7 +42,6 @@
   text-align: left;
   margin: auto;
   margin-top: 32px;
-  /* padding: 32px 416px 0; */
   max-width: 608px;
   max-height: 24px;
 }
@@ -86,7 +83,6 @@
     background-size: inherit;
     background-position: top;
     background-repeat: no-repeat;
-    margin-bottom: 328px;
   }
 
   .main__title {

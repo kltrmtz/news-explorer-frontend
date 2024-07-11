@@ -13,6 +13,15 @@ const SignUpModal = ({
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
 
+  const {
+    // register,
+    // handleSubmit,
+
+    formState: { isValid },
+  } = useForm();
+
+  console.log(isValid);
+
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
     console.log(e.target.value);
@@ -28,14 +37,8 @@ const SignUpModal = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ email, password, name });
+    onSubmit({ email, password, name, isValid });
   };
-
-  const {
-    // register,
-    // handleSubmit,
-    formState: { isValid },
-  } = useForm();
 
   useEffect(() => {
     if (isOpen) {
@@ -53,7 +56,6 @@ const SignUpModal = ({
       isOpen={isOpen}
       className="register"
       onSubmit={handleSubmit}
-      isValid={isValid}
     >
       <div className="modal__form">
         <label className="modal__form-label">
@@ -100,11 +102,23 @@ const SignUpModal = ({
             onChange={handleNameChange}
           />
         </label>
-        <div className="modal__buttons">
+        {/* <div className="modal__buttons">
           <button
-            className="modal__button : modal__button-disabled"
             type="submit"
             disabled={!isValid}
+            className={`modal__button ${
+              isValid === true ? "modal__button-disabled" : ""
+            }`}
+          >
+            Sign Up
+          </button> */}
+        <div className="modal__buttons">
+          <button
+            type="submit"
+            disabled={!isValid}
+            className={`modal__button ${
+              isValid ? "modal__button-disabled" : ""
+            }`}
           >
             Sign Up
           </button>

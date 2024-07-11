@@ -12,7 +12,6 @@ const SearchForm = ({ handleSearch }) => {
     <div className="searchField">
       <form
         className="searchField__form"
-        // onSubmit={handleSearchButton}
         onSubmit={handleSubmit(handleSearchButton)}
       >
         <input
@@ -26,7 +25,6 @@ const SearchForm = ({ handleSearch }) => {
           className="searchField__button"
           type="submit"
           onSubmit={handleSearch}
-          // onSearch={handleSearch}
         >
           Search
         </button>

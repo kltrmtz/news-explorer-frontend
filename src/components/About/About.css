@@ -44,15 +44,15 @@
 @media screen and (min-width: 769px) and (max-width: 1024px) {
   .about {
     max-width: 1024px;
+    padding: 50px;
   }
 
   .about__content {
-    padding-top: 40px;
+    margin-right: 0;
   }
 
   .about__title {
     max-width: 424px;
-    /* max-height: 34px; */
     font-size: 30px;
     line-height: 40px;
   }
@@ -66,8 +66,6 @@
   .about__image {
     max-width: 348px;
     max-height: 348px;
-    /* margin-left: 40px;
-    margin-top: 61px; */
   }
 }
 
@@ -78,7 +76,6 @@
   }
 
   .about__content {
-    /* max-width: 424px; */
     margin-left: 32px;
     margin-right: 40px;
   }
@@ -101,13 +98,15 @@
   }
 
   .about__content {
+    max-width: 288px;
     margin-right: 16px;
     margin-left: 16px;
+    margin: auto;
   }
 
   .about__image {
     max-width: 272px;
     max-height: 272px;
-    /* margin: auto; */
+    margin: auto;
   }
 }

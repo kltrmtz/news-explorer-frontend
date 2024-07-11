@@ -3,13 +3,9 @@ import { useContext } from "react";
 import CurrentUserContext from "/src/contexts/CurrentUserContext.js";
 import SavedCardContext from "/src/contexts/SavedCardContext.js";
 
-const SavedNewsHeader = ({ isSaved, isLoggedIn, onLogOut }) => {
+const SavedNewsHeader = () => {
   const { currentUser } = useContext(CurrentUserContext);
   const { savedCards } = useContext(SavedCardContext);
-
-  // const isSaved = savedCards.find((article) => {
-  //   article.link === cardData.url;
-  // });
 
   const userCards = savedCards.filter((article) => {
     article.owner === currentUser._id;
@@ -57,7 +53,7 @@ const SavedNewsHeader = ({ isSaved, isLoggedIn, onLogOut }) => {
   const keywordCounter = articleCounter(articleArray);
 
   return (
-    <section className="saved__news">
+    <section className="saved__news-header">
       <div className="article__content">
         <h2 className="article__title">Saved articles</h2>
         <p className="article__info">
@@ -65,11 +61,6 @@ const SavedNewsHeader = ({ isSaved, isLoggedIn, onLogOut }) => {
         </p>
         <p className="article__keywords">By keywords: {keywordCounter}</p>
       </div>
-      {/* <ArticleCardSaved
-      isLoggedIn={isLoggedIn}
-      articleCards={articleCards}
-      handleDelete={handleDelete}
-      /> */}
     </section>
   );
 };

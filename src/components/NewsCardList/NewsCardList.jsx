@@ -4,7 +4,12 @@ import { useContext, useState } from "react";
 import SearchedContext from "/src/contexts/SearchedContext.js";
 import SearchResultsContext from "/src/contexts/SearchResultsContext.js";
 
-const NewsCardList = ({ handleCardSave, handleCardDelete, onSignIn }) => {
+const NewsCardList = ({
+  handleCardSave,
+  handleCardDelete,
+  onSignIn,
+  onCreateSignInModal,
+}) => {
   const searched = useContext(SearchedContext);
   const searchResults = useContext(SearchResultsContext);
   const [cardRendered, setCardsRendered] = useState(3);
@@ -27,6 +32,7 @@ const NewsCardList = ({ handleCardSave, handleCardDelete, onSignIn }) => {
                   handleCardSave={handleCardSave}
                   handleCardDelete={handleCardDelete}
                   onSignIn={onSignIn}
+                  onCreateSignInModal={onCreateSignInModal}
                 />
               );
             })}

@@ -1,38 +1,53 @@
 import ModalWithForm from "./ModalWithForm.jsx";
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useFormWithValidation } from "/src/hooks/useForm.js";
 
-const SigninModal = ({ isOpen, onClose, onSubmit, linkToSignUp }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const SigninModal = ({
+  isOpen,
+  onClose,
+  onSubmit,
+  linkToSignUp,
+  handleRedirectUser,
+}) => {
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
 
-  const {
-    // register,
-    // handleSubmit,
+  // const {
+  //   // register,
+  //   // handleSubmit,
 
-    formState: { isValid },
-  } = useForm();
+  //   formState: { isValid },
+  // } = useForm();
 
-  console.log(isValid);
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
+  const { values, errors, isValid, handleChange } = useFormWithValidation({
+    email: "",
+    password: "",
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ email, password, isValid });
+    onSubmit(values);
   };
 
-  useEffect(() => {
-    if (isOpen) {
-      setEmail("");
-      setPassword("");
-    }
-  }, [isOpen]);
+  // console.log(isValid);
+
+  // const handleEmailChange = (e) => {
+  //   setEmail(e.target.value);
+  // };
+  // const handlePasswordChange = (e) => {
+  //   setPassword(e.target.value);
+  // };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   onSubmit({ email, password });
+  // };
+
+  // useEffect(() => {
+  //   if (isOpen) {
+  //     setEmail("");
+  //     setPassword("");
+  //   }
+  // }, [isOpen]);
 
   return (
     <ModalWithForm
@@ -42,6 +57,9 @@ const SigninModal = ({ isOpen, onClose, onSubmit, linkToSignUp }) => {
       isOpen={isOpen}
       onSubmit={handleSubmit}
       className="signIn"
+      isValid={!isValid}
+      handleRedirectUser={handleRedirectUser}
+      linkButtonText={"Sign Up"}
     >
       <div className="modal__form">
         <label className="modal__form-label">
@@ -54,8 +72,10 @@ const SigninModal = ({ isOpen, onClose, onSubmit, linkToSignUp }) => {
             placeholder="Enter email"
             minLength="1"
             maxLength="30"
-            value={email}
-            onChange={handleEmailChange}
+            // value={email}
+            // onChange={handleEmailChange}
+            value={values.email}
+            onChange={handleChange}
             required
           />
         </label>
@@ -69,17 +89,19 @@ const SigninModal = ({ isOpen, onClose, onSubmit, linkToSignUp }) => {
             placeholder="Enter password"
             minLength="1"
             maxLength="30"
-            value={password}
-            onChange={handlePasswordChange}
+            // value={password}
+            // onChange={handlePasswordChange}
+            value={values.password}
+            onChange={handleChange}
             required
           />
         </label>
-        <div className="modal__buttons">
+        {/* <div className="modal__buttons">
           <button
             type="submit"
             disabled={!isValid}
             className={`modal__button ${
-              isValid ? "modal__button-disabled" : ""
+              isValid ? "modal__button-disabled" : "modal__button"
             }`}
           >
             Sign In
@@ -94,7 +116,7 @@ const SigninModal = ({ isOpen, onClose, onSubmit, linkToSignUp }) => {
               Sign up
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
     </ModalWithForm>
   );

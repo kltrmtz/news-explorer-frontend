@@ -1,6 +1,5 @@
 import ModalWithForm from "./ModalWithForm.jsx";
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useFormWithValidation } from "/src/hooks/useForm.js";
 
 const SignUpModal = ({
   isOpen,
@@ -8,45 +7,56 @@ const SignUpModal = ({
   onSubmit,
   linkToSignIn,
   serverError,
+  handleRedirectUser,
 }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [name, setName] = useState("");
 
-  const {
-    // register,
-    // handleSubmit,
+  // const {
+  //   // register,
+  //   // handleSubmit,
+  //   formState: { isValid },
+  // } = useForm();
 
-    formState: { isValid },
-  } = useForm();
-
-  console.log(isValid);
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-    console.log(e.target.value);
-  };
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-    console.log(e.target.value);
-  };
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-    console.log(e.target.value);
-  };
+  const { values, errors, isValid, handleChange } = useFormWithValidation({
+    email: "",
+    password: "",
+    name: "",
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ email, password, name, isValid });
+    onSubmit(values);
   };
 
-  useEffect(() => {
-    if (isOpen) {
-      setEmail("");
-      setPassword("");
-      setName("");
-    }
-  }, [isOpen]);
+  // console.log(!isValid);
+
+  // const handleEmailChange = (e) => {
+  //   setEmail(e.target.value);
+  //   console.log(e.target.value);
+  // };
+  // const handlePasswordChange = (e) => {
+  //   setPassword(e.target.value);
+  //   console.log(e.target.value);
+  // };
+  // const handleNameChange = (e) => {
+  //   setName(e.target.value);
+  //   console.log(e.target.value);
+  // };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   onSubmit({ email, password, name });
+  // };
+
+  // useEffect(() => {
+  //   if (isOpen) {
+  //     setEmail("");
+  //     setPassword("");
+  //     setName("");
+  //   }
+  // }, [isOpen]);
 
   return (
     <ModalWithForm
@@ -56,6 +66,9 @@ const SignUpModal = ({
       isOpen={isOpen}
       className="register"
       onSubmit={handleSubmit}
+      isValid={!isValid}
+      handleRedirectUser={handleRedirectUser}
+      linkButtonText={"Sign In"}
     >
       <div className="modal__form">
         <label className="modal__form-label">
@@ -68,8 +81,10 @@ const SignUpModal = ({
             placeholder="Enter your email"
             minLength="1"
             maxLength="30"
-            value={email}
-            onChange={handleEmailChange}
+            // value={email}
+            // onChange={handleEmailChange}
+            value={values.email}
+            onChange={handleChange}
             required
           />
         </label>
@@ -83,8 +98,10 @@ const SignUpModal = ({
             placeholder="Enter password"
             minLength="1"
             maxLength="30"
-            value={password}
-            onChange={handlePasswordChange}
+            // value={password}
+            // onChange={handlePasswordChange}
+            value={values.password}
+            onChange={handleChange}
             required
           />
         </label>
@@ -98,26 +115,18 @@ const SignUpModal = ({
             placeholder="Enter your username"
             minLength="1"
             maxLength="30"
-            value={name}
-            onChange={handleNameChange}
+            // value={name}
+            // onChange={handleNameChange}
+            value={values.name}
+            onChange={handleChange}
           />
         </label>
         {/* <div className="modal__buttons">
           <button
             type="submit"
-            disabled={!isValid}
+            disabled={isValid}
             className={`modal__button ${
-              isValid === true ? "modal__button-disabled" : ""
-            }`}
-          >
-            Sign Up
-          </button> */}
-        <div className="modal__buttons">
-          <button
-            type="submit"
-            disabled={!isValid}
-            className={`modal__button ${
-              isValid ? "modal__button-disabled" : ""
+              !isValid ? "modal__button-disabled" : ""
             }`}
           >
             Sign Up
@@ -132,7 +141,7 @@ const SignUpModal = ({
               Sign in
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
     </ModalWithForm>
   );

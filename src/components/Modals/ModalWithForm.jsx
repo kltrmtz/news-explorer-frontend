@@ -9,7 +9,9 @@ const ModalWithForm = ({
   onSubmit,
   handleOverlay,
   buttonText,
-  // disabled = { isValid },
+  linkButtonText,
+  isValid,
+  handleRedirectUser,
 }) => {
   return (
     <div className={`modal modal_type_${name}`} onClick={handleOverlay}>
@@ -22,15 +24,28 @@ const ModalWithForm = ({
             onClick={onClose}
           />
           {children}
-          {/* <button
-            type="submit"
-            disabled={!isValid}
-            className={`modal__button ${
-              isValid === true ? "modal__button-disabled" : ""
-            }`}
-          >
-            {buttonText}
-          </button> */}
+          <div className="modal__buttons">
+            <button
+              type="submit"
+              disabled={isValid}
+              className={`modal__button ${
+                isValid === true ? "modal__button-disabled" : ""
+              }`}
+            >
+              {buttonText}
+            </button>
+            <div className="modal__link">
+              or
+              <button
+                className="modal__link-button"
+                type="button"
+                // onClick={linkToSignIn}
+                onClick={handleRedirectUser}
+              >
+                {linkButtonText}
+              </button>
+            </div>
+          </div>
         </form>
       </div>
     </div>

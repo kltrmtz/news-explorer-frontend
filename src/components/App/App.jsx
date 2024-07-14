@@ -481,7 +481,8 @@ function App() {
                       onClose={handleCloseModal}
                       isOpen={activeModal === "register"}
                       // onSubmit={handleSignUpSubmit}
-                      linkToSignIn={handleRedirectUser}
+                      // linkToSignIn={handleRedirectUser}
+                      handleRedirectUser={handleRedirectUser}
                       loading={loading}
                     />
                   )}
@@ -491,7 +492,8 @@ function App() {
                       onClose={handleCloseModal}
                       isOpen={activeModal === "login"}
                       // onSubmit={handleSignInSubmit}
-                      linkToSignUp={handleRedirectUser}
+                      // linkToSignUp={handleRedirectUser}
+                      handleRedirectUser={handleRedirectUser}
                       loading={loading}
                       onSubmit={handleLogin}
                     />

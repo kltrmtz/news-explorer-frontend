@@ -44,6 +44,12 @@
   cursor: pointer;
 }
 
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .results {
+    padding: 60px 80px;
+  }
+}
+
 @media screen and (min-width: 481px) and (max-width: 768px) {
   .results {
     padding: 40px;

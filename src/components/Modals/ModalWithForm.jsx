@@ -29,7 +29,7 @@ const ModalWithForm = ({
               type="submit"
               disabled={isValid}
               className={`modal__button ${
-                isValid === true ? "modal__button-disabled" : ""
+                isValid ? "modal__button-disabled" : ""
               }`}
             >
               {buttonText}
@@ -39,7 +39,6 @@ const ModalWithForm = ({
               <button
                 className="modal__link-button"
                 type="button"
-                // onClick={linkToSignIn}
                 onClick={handleRedirectUser}
               >
                 {linkButtonText}

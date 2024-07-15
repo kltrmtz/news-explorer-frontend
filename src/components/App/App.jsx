@@ -27,7 +27,6 @@ import { authorize, checkToken } from "/src/utils/auth.js";
 import { getSearchResults } from "/src/utils/newsApi.js";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
 import { setToken, getToken } from "/src/utils/token.js";
-import NewsCardList from "../NewsCardList/NewsCardList.jsx";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -35,9 +34,9 @@ function App() {
   const [searching, setSearching] = useState(false);
   const [searched, setSearched] = useState(false);
   const [searchError, setSearchError] = useState(false);
+  const [serverError, setServerError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
-  const [count, setCount] = useState(0);
   const [savedCards, setSavedCards] = useState([]);
   const [isSaved, setIsSaved] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -91,23 +90,6 @@ function App() {
       : setActiveModal("register");
   };
 
-  // handle card delete
-
-  const handleCardDelete = () => {
-    const token = localStorage.getItem("jwt");
-    api
-      .deleteCards(selectedCard._id, token)
-      .then(() => {
-        setClothingItems((cards) =>
-          cards.filter((card) => card._id !== selectedCard._id)
-        );
-        handleCloseModal();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
   // handle register
 
   const handleSignUpSubmit = ({ email, password, name }) => {
@@ -116,11 +98,14 @@ function App() {
       .then((data) => {
         handleSignInSubmit({ email, password });
         console.log(data);
+        setServerError(false);
         handleCloseModal();
+        handleRegisterModal();
       })
 
       .catch((err) => {
         console.log(err);
+        setServerError(true);
       });
   };
 
@@ -154,10 +139,13 @@ function App() {
   //     .then((res) => {
   //       localStorage.setItem("jwt", res.token);
   //       handleLogin(res);
+  //       setServerError(false);
+
   //       handleCloseModal();
   //     })
   //     .catch((err) => {
   //       console.log(err);
+  //  setServerError(true);
   //     })
   //     .finally(() => {
   //       setLoading(false);
@@ -174,26 +162,6 @@ function App() {
 
   // handle new login new submit sub out
 
-  const handleSubmit = (request) => {
-    setLoading(true);
-    request()
-      .then(() => {
-        if (activeModal === "register") {
-          setServerError(false);
-        } else {
-          setServerError(false);
-          handleCloseModal();
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        setServerError(true);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  };
-
   const handleLogin = (email, password) => {
     setLoading(true);
     authorize(email, password)
@@ -205,10 +173,12 @@ function App() {
             setIsLoggedIn(true);
           });
         }
+        setServerError(false);
         handleCloseModal();
       })
       .catch((err) => {
         console.error(err);
+        setServerError(true);
       })
       .finally(() => {
         setLoading(false);
@@ -216,26 +186,6 @@ function App() {
   };
 
   // handle search
-
-  // const handleSearch = ({ keyword }) => {
-  //   setKeyword(keyword);
-  //   setSearching(true);
-  //   getSearchResults(keyword)
-  //     .then((res) => {
-  //       console.log(res);
-  //       setSearchResults(res.articles);
-  //       setSearched(true);
-  //       setSearching(false);
-  //       setSearchError(false);
-  //       setIsSaved(true);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       setSearchError(true);
-  //     });
-  // };
-
-  // handle search subout
 
   const handleSearch = ({ keyword }) => {
     setKeyword(keyword);
@@ -256,35 +206,6 @@ function App() {
   };
 
   // handle card save unsave
-
-  // const handleCardSave = (id, isSaved) => {
-  //   const token = localStorage.getItem("jwt");
-  //   !isSaved
-  //     ? api
-  //         .addCardSave(id, token)
-  //         .then((updatedCard) => {
-  //           setSavedCards((cards) =>
-  //             cards.map((item) =>
-  //               item._id === updatedCard.data._id ? updatedCard.data : item
-  //             )
-  //           );
-  //         })
-  //         .catch((err) => console.log(err))
-  //     : api
-  //         .removeCardSave(id, token)
-  //         .then((updatedCard) => {
-  //           setSavedCards((cards) =>
-  //             cards.map((item) =>
-  //               item._id === updatedCard.data._id ? updatedCard.data : item
-  //             )
-  //           );
-  //         })
-  //         .catch((err) => console.log(err));
-  // };
-
-  // const isSaved = savedCards.find((article) => {
-  //   article.link === cardData.url;
-  // });
 
   // new sub out save
   console.log(savedCards);
@@ -328,6 +249,37 @@ function App() {
     }
   };
 
+  // handle card delete
+
+  const handleCardDelete = () => {
+    const token = localStorage.getItem("jwt");
+    removeSaveArticle(savedCard._id, token)
+      .then(() => {
+        setSavedCards((cards) =>
+          cards.filter((card) => card._id !== savedCard._id)
+        );
+        handleCloseModal();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  // const handleCardDelete = () => {
+  //   const token = localStorage.getItem("jwt");
+  //   api
+  //     .removeSaveArticle(savedCard._id, token)
+  //     .then(() => {
+  //       setSavedCards((cards) =>
+  //         cards.filter((card) => card._id !== savedCard._id)
+  //       );
+  //       handleCloseModal();
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
+
   // use effects
 
   // useEffect((userData) => {
@@ -353,15 +305,13 @@ function App() {
 
   useEffect(() => {
     const handleOverlay = (e) => {
-      if (e.target.classList.contains("modal", "modal__mobile")) {
+      if (e.target.classList.contains("modal")) {
         handleCloseModal();
       }
     };
     document.addEventListener("click", handleOverlay);
     return () => document.removeEventListener("click", handleOverlay);
   }, []);
-
-  // new
 
   useEffect(() => {
     setCurrentPage(location.pathname);
@@ -413,8 +363,6 @@ function App() {
     }
   }, [isLoggedIn]);
 
-  // old
-
   return (
     <CurrentPageContext.Provider
       value={{ currentPage, setCurrentPage, activeModal }}
@@ -439,7 +387,6 @@ function App() {
                       <Main
                         isLoggedIn={isLoggedIn}
                         onSelectedCard={handleSelectedCard}
-                        handleCardDelete={handleCardDelete}
                         handleSearch={handleSearch}
                         loading={searching}
                         searchError={searchError}
@@ -448,7 +395,6 @@ function App() {
                         onCreateModal={handleCreateModal}
                         onCreateSignInModal={handleSignInModal}
                       />
-                      {/* <NewsCardList onCreateModal={handleCreateModal} /> */}
                     </Route>
                   </div>
                   <Route path="/saved-news">
@@ -458,7 +404,6 @@ function App() {
                         handleCardDelete={handleCardDelete}
                         onCreateModal={handleCreateModal}
                         currentUser={currentUser}
-                        // onBookMark={handleBookMark}
                         handleCardSave={handleCardSave}
                         onLogOut={handleLogOut}
                         isSaved={isSaved}
@@ -472,7 +417,6 @@ function App() {
                       onCreateModal={handleDeleteModal}
                       onClose={handleCloseModal}
                       isOpen={activeModal === "confirm"}
-                      handleCardDelete={handleCardDelete}
                     />
                   )}
                   {activeModal === "register" && (
@@ -480,10 +424,10 @@ function App() {
                       onCreateModal={handleSignUpModal}
                       onClose={handleCloseModal}
                       isOpen={activeModal === "register"}
-                      // onSubmit={handleSignUpSubmit}
-                      // linkToSignIn={handleRedirectUser}
+                      onSubmit={handleSignUpSubmit}
                       handleRedirectUser={handleRedirectUser}
                       loading={loading}
+                      serverError={serverError}
                     />
                   )}
                   {activeModal === "login" && (
@@ -492,10 +436,10 @@ function App() {
                       onClose={handleCloseModal}
                       isOpen={activeModal === "login"}
                       // onSubmit={handleSignInSubmit}
-                      // linkToSignUp={handleRedirectUser}
                       handleRedirectUser={handleRedirectUser}
                       loading={loading}
                       onSubmit={handleLogin}
+                      serverError={serverError}
                     />
                   )}
                   {activeModal === "mobile" && (
@@ -521,26 +465,3 @@ function App() {
 }
 
 export default App;
-
-{
-  /* <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Hello World</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/components/App/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p> */
-}

@@ -1,22 +1,9 @@
 import ModalWithForm from "./ModalWithForm.jsx";
 import { useFormWithValidation } from "/src/hooks/useForm.js";
 
-const SigninModal = ({
-  isOpen,
-  onClose,
-  onSubmit,
-  linkToSignUp,
-  handleRedirectUser,
-}) => {
+const SigninModal = ({ isOpen, onClose, onSubmit, handleRedirectUser }) => {
   // const [email, setEmail] = useState("");
   // const [password, setPassword] = useState("");
-
-  // const {
-  //   // register,
-  //   // handleSubmit,
-
-  //   formState: { isValid },
-  // } = useForm();
 
   const { values, errors, isValid, handleChange } = useFormWithValidation({
     email: "",
@@ -96,27 +83,6 @@ const SigninModal = ({
             required
           />
         </label>
-        {/* <div className="modal__buttons">
-          <button
-            type="submit"
-            disabled={!isValid}
-            className={`modal__button ${
-              isValid ? "modal__button-disabled" : "modal__button"
-            }`}
-          >
-            Sign In
-          </button>
-          <div className="modal__link">
-            or
-            <button
-              className="modal__link-button"
-              type="button"
-              onClick={linkToSignUp}
-            >
-              Sign up
-            </button>
-          </div>
-        </div> */}
       </div>
     </ModalWithForm>
   );

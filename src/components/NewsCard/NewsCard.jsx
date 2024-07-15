@@ -35,13 +35,13 @@ const NewsCard = ({
   const handleBookmark = () => {
     console.log(cardData);
     const token = localStorage.getItem("jwt");
-    // debugger;
     handleCardSave({ keyword, cardData, token, id, isSaved });
   };
 
   const handleBookmarkDelete = () => {
     const token = localStorage.getItem("jwt");
-    handleCardDelete({ cardData, token });
+    debugger;
+    handleCardDelete({ keyword, cardData, token });
   };
 
   const publicationDate = new Date(

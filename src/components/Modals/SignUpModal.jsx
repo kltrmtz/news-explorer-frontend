@@ -5,19 +5,12 @@ const SignUpModal = ({
   isOpen,
   onClose,
   onSubmit,
-  linkToSignIn,
   serverError,
   handleRedirectUser,
 }) => {
   // const [email, setEmail] = useState("");
   // const [password, setPassword] = useState("");
   // const [name, setName] = useState("");
-
-  // const {
-  //   // register,
-  //   // handleSubmit,
-  //   formState: { isValid },
-  // } = useForm();
 
   const { values, errors, isValid, handleChange } = useFormWithValidation({
     email: "",
@@ -88,6 +81,7 @@ const SignUpModal = ({
             required
           />
         </label>
+        {errors.email && <p>Email is required.</p>}
         <label className="modal__form-label">
           Password
           <input
@@ -105,6 +99,7 @@ const SignUpModal = ({
             required
           />
         </label>
+        {errors.password && <p>Password is required.</p>}
         <label className="modal__form-label">
           Username
           <input
@@ -121,27 +116,7 @@ const SignUpModal = ({
             onChange={handleChange}
           />
         </label>
-        {/* <div className="modal__buttons">
-          <button
-            type="submit"
-            disabled={isValid}
-            className={`modal__button ${
-              !isValid ? "modal__button-disabled" : ""
-            }`}
-          >
-            Sign Up
-          </button>
-          <div className="modal__link">
-            or
-            <button
-              className="modal__link-button"
-              type="button"
-              onClick={linkToSignIn}
-            >
-              Sign in
-            </button>
-          </div>
-        </div> */}
+        {serverError && <p>Incorrect Email or Password.</p>}
       </div>
     </ModalWithForm>
   );

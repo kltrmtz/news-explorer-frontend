@@ -2,8 +2,6 @@
   display: flex;
   background-color: #fff;
   max-width: 1440px;
-  /* padding-top: 80px;
-  padding-bottom: 80px; */
   padding: 80px 104px;
   margin: 0;
 }
@@ -11,7 +9,6 @@
 .about__image {
   width: 464px;
   height: 464px;
-  /* margin-left: 24px; */
   border-radius: 50%;
 }
 
@@ -21,12 +18,10 @@
   flex-wrap: wrap;
   max-width: 600px;
   margin-left: 56px;
-
-  /* margin-right: 216px; */
 }
 
 .about__title {
-  font-family: "Roboto Slab";
+  font-family: "Roboto Slab", Arial, sans-serif;
   font-size: 40px;
   font-weight: 400;
   line-height: 46px;
@@ -34,7 +29,7 @@
 }
 
 .about__description {
-  font-family: "Roboto";
+  font-family: "Roboto", Arial, sans-serif;
   font-size: 18px;
   font-weight: 400;
   line-height: 24px;
@@ -42,7 +37,7 @@
   max-width: 600px;
 }
 
-@media screen and (min-width: 769px) and (max-width: 1024px) {
+@media screen and (max-width: 1024px) {
   .about {
     max-width: 1024px;
     padding: 60px;
@@ -50,36 +45,36 @@
 
   .about__content {
     margin-right: 0;
+    margin-left: 44px;
   }
 
   .about__title {
     max-width: 424px;
     font-size: 30px;
     line-height: 40px;
+    margin-top: 0;
   }
 
   .about__description {
     max-width: 424px;
     max-height: 168px;
-    margin: auto;
+    margin-top: 0;
   }
 
   .about__image {
     max-width: 348px;
     max-height: 348px;
-    /* margin-left: 80px; */
   }
 }
 
-@media screen and (min-width: 481px) and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .about {
     max-width: 767px;
-    padding: 40px;
+    padding: 40px 40px;
   }
 
   .about__content {
     margin-left: 32px;
-    margin-right: 40px;
   }
 
   .about__description {
@@ -89,20 +84,17 @@
   .about__image {
     max-width: 232px;
     max-height: 232px;
-    margin: auto;
   }
 }
 
-@media screen and (min-width: 320px) and (max-width: 480px) {
+@media screen and (max-width: 480px) {
   .about {
     flex-direction: column;
-    padding-top: 32px;
+    padding: 32px 16px;
   }
 
   .about__content {
     max-width: 288px;
-    margin-right: 16px;
-    margin-left: 16px;
     margin: auto;
   }
 

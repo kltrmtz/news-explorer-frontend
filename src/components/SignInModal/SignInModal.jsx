@@ -1,4 +1,4 @@
-import ModalWithForm from "./ModalWithForm.jsx";
+import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import { useFormWithValidation } from "/src/hooks/useForm.js";
 
 const SigninModal = ({ isOpen, onClose, onSubmit, handleRedirectUser }) => {

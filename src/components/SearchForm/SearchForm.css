@@ -21,7 +21,7 @@
 }
 
 .searchField__input {
-  font-family: "Roboto";
+  font-family: "Roboto", Arial, sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 22px;
@@ -36,7 +36,7 @@
 .searchField__button {
   color: #fff;
   position: absolute;
-  font-family: "Roboto";
+  font-family: "Roboto", Arial, sans-serif;
   font-size: 18px;
   font-weight: 500;
   line-height: 24px;
@@ -57,10 +57,27 @@
   background-color: #347eff;
 }
 
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .searchField {
+    max-width: 528px;
+    /* width: 100%; */
+  }
+
+  .searchField__form {
+    max-width: 528px;
+    /* height: 56px; */
+  }
+}
+
 @media screen and (min-width: 481px) and (max-width: 768px) {
   .searchField {
     max-width: 448px;
     /* width: 100%; */
+  }
+
+  .searchField__form {
+    max-width: 448px;
+    /* height: 56px; */
   }
 }
 
@@ -76,8 +93,8 @@
   }
 
   .searchField__form {
-    width: 288px;
-    height: 56px;
+    max-width: 288px;
+    /* height: 56px; */
   }
 
   .searchField__button {

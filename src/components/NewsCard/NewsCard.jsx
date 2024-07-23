@@ -66,7 +66,7 @@ const NewsCard = ({
   console.log(isLoggedIn);
 
   return (
-    <section className="card">
+    <article className="card">
       <div className="card__content">
         {isLoggedIn && currentPage === "/" && (
           <button className={cardButtonClassName} onClick={handleBookmark} />
@@ -132,7 +132,7 @@ const NewsCard = ({
           )}
         </div>
       </div>
-    </section>
+    </article>
   );
 };
 

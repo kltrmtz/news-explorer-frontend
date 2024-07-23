@@ -12,10 +12,10 @@ import Header from "../Header/Header.jsx";
 import Main from "../Main/Main.jsx";
 import SavedNews from "../SavedNews/SavedNews.jsx";
 import Footer from "../Footer/Footer.jsx";
-import SignInModal from "../Modals/SignInModal.jsx";
-import SignUpModal from "../Modals/SignUpModal.jsx";
-import RegisterConfirmationModal from "../Modals/RegisterConfirmationModal.jsx";
-import MobileModal from "../Modals/MobileModal.jsx";
+import SignInModal from "../SignInModal/SignInModal.jsx";
+import SignUpModal from "../SignUpModal/SignUpModal.jsx";
+import RegisterConfirmationModal from "../RegisterConfirmationModal/RegisterConfirmationModal.jsx";
+import MobileModal from "../MobileModal/MobileModal.jsx";
 // import api from "/src/utils/api.js";
 // import auth from "/src/utils/auth.js";
 import {
@@ -373,30 +373,29 @@ function App() {
             <SavedCardContext.Provider value={{ savedCards, setSavedCards }}>
               <KeywordContext.Provider value={{ keyword, setKeyword }}>
                 <div className="page">
-                  <div className="main__content">
-                    <Header
-                      onCreateModal={handleCreateModal}
-                      onCreateRegisterModal={handleRegisterModal}
-                      onCreateSignInModal={handleSignInModal}
-                      isLoggedIn={isLoggedIn}
-                      onLogOut={handleLogOut}
-                      onOpenMobileMenu={handleMobileModal}
-                    />
+                  <Header
+                    onCreateModal={handleCreateModal}
+                    onCreateRegisterModal={handleRegisterModal}
+                    onCreateSignInModal={handleSignInModal}
+                    isLoggedIn={isLoggedIn}
+                    onLogOut={handleLogOut}
+                    onOpenMobileMenu={handleMobileModal}
+                  />
 
-                    <Route exact path="/">
-                      <Main
-                        isLoggedIn={isLoggedIn}
-                        onSelectedCard={handleSelectedCard}
-                        handleSearch={handleSearch}
-                        loading={searching}
-                        searchError={searchError}
-                        handleCardSave={handleCardSave}
-                        onSignIn={handleSignInModal}
-                        onCreateModal={handleCreateModal}
-                        onCreateSignInModal={handleSignInModal}
-                      />
-                    </Route>
-                  </div>
+                  <Route exact path="/">
+                    <Main
+                      isLoggedIn={isLoggedIn}
+                      onSelectedCard={handleSelectedCard}
+                      handleSearch={handleSearch}
+                      loading={searching}
+                      searchError={searchError}
+                      handleCardSave={handleCardSave}
+                      onSignIn={handleSignInModal}
+                      onCreateModal={handleCreateModal}
+                      onCreateSignInModal={handleSignInModal}
+                    />
+                  </Route>
+
                   <Route path="/saved-news">
                     <ProtectedRoute isLoggedIn={isLoggedIn} path="/saved-news">
                       <SavedNews
@@ -417,6 +416,7 @@ function App() {
                       onCreateModal={handleDeleteModal}
                       onClose={handleCloseModal}
                       isOpen={activeModal === "confirm"}
+                      handleRedirectUser={handleRedirectUser}
                     />
                   )}
                   {activeModal === "register" && (

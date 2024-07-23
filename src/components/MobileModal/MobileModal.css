@@ -31,7 +31,7 @@
 
 .mobile__title {
   color: #fff;
-  font-family: "Roboto Slab";
+  font-family: "Roboto Slab", Arial, sans-serif;
   font-size: 16px;
   font-weight: 700;
   line-height: 24px;
@@ -67,7 +67,7 @@
   color: #fff;
   border-style: none;
   cursor: pointer;
-  font-family: "Roboto";
+  font-family: "Roboto", Arial, sans-serif;
   font-size: 18px;
   font-weight: 500;
   line-height: 56px;
@@ -82,7 +82,7 @@
   color: #fff;
   border-style: none;
   cursor: pointer;
-  font-family: "Roboto";
+  font-family: "Roboto", Arial, sans-serif;
   font-size: 18px;
   font-weight: 500;
   line-height: 56px;
@@ -95,7 +95,7 @@
 
 .mobile__user-logout-button {
   color: white;
-  font-family: "Roboto";
+  font-family: "Roboto", Arial, sans-serif;
   font-weight: 500;
   font-size: 18px;
   line-height: 24px;
@@ -112,7 +112,7 @@
 
 .mobile__signin-button {
   color: #fff;
-  font-family: "Roboto";
+  font-family: "Roboto", Arial, sans-serif;
   font-weight: 500;
   font-size: 18px;
   line-height: 24px;

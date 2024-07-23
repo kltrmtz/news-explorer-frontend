@@ -1,10 +1,12 @@
 import "./RegisterConfirmationModal.css";
-import "./ModalWithForm.css";
+import "/src/components/ModalWithForm/ModalWithForm.css";
 
 const RegisterConfirmationModal = ({
   onClose,
-  linkToSignIn,
+  // linkButtonText,
   handleOverlay,
+  handleRedirectUser = { handleRedirectUser },
+  linkButtonText = "Sign In",
 }) => {
   return (
     <div className="register__modal" onClick={handleOverlay}>
@@ -14,16 +16,16 @@ const RegisterConfirmationModal = ({
           type="button"
           onClick={onClose}
         />
-        <div className="register__modal-heading">
+        <h3 className="register__modal-heading">
           Registration successfully completed!
-        </div>
-        <div>
+        </h3>
+        <div className="modal__link">
           <button
-            className="modal__link modal__link-button"
+            className="modal__link-button"
             type="button"
-            onClick={linkToSignIn}
+            onClick={handleRedirectUser}
           >
-            Sign in
+            {linkButtonText}
           </button>
         </div>
       </div>

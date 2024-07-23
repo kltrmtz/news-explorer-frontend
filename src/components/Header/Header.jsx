@@ -39,8 +39,8 @@ const Header = ({
         className={`header__mobile-menu ${isMobile}`}
         onClick={onOpenMobileMenu}
       ></button>
-      <div className="header__interactive">
-        <div className="header__home-content">
+      <nav className="header__interactive">
+        <div className="header__home">
           <Link to="/">
             <button
               className="header__home-button"
@@ -52,7 +52,7 @@ const Header = ({
           </Link>
           <img className="header__home-stroke" alt="stroke" src={stroke}></img>
         </div>
-        <div className="header__article-content">
+        <div className="header__article">
           <Link to="/saved-news">
             <button
               className="header__article-button"
@@ -65,7 +65,7 @@ const Header = ({
         </div>
         <div>
           <button
-            className="header__user-logout-button"
+            className="header__logout-button"
             type="text"
             onClick={onLogOut}
           >
@@ -73,7 +73,7 @@ const Header = ({
             <img className="header__logout" src={logout} alt="logout" />
           </button>
         </div>
-      </div>
+      </nav>
     </header>
   ) : isLoggedIn && currentPage === "/saved-news" ? (
     <header className="header__saved">
@@ -86,8 +86,8 @@ const Header = ({
         className={`header__mobile-menu-saved ${isMobile}`}
         onClick={onOpenMobileMenu}
       ></button>
-      <div className="header__interactive">
-        <div className="header__home-content-saved">
+      <nav className="header__interactive">
+        <div className="header__home-saved">
           <Link to="/">
             <button
               className="header__home-button-saved"
@@ -99,7 +99,7 @@ const Header = ({
           </Link>
           <img className="header__home-stroke" alt="stroke" src={stroke}></img>
         </div>
-        <div className="header__article-content-saved">
+        <div className="header__article-saved">
           <Link to="/saved-news">
             <button
               className="header__article-button-saved"
@@ -117,7 +117,7 @@ const Header = ({
         </div>
         <div>
           <button
-            className="header__user-logout-button-saved"
+            className="header__logout-button-saved"
             type="text"
             onClick={onLogOut}
           >
@@ -129,7 +129,7 @@ const Header = ({
             />
           </button>
         </div>
-      </div>
+      </nav>
     </header>
   ) : (
     <header className="header">
@@ -142,8 +142,8 @@ const Header = ({
         className={`header__mobile-menu ${isMobile}`}
         onClick={onOpenMobileMenu}
       ></button>
-      <div className="header__interactive">
-        <div className="header__home-content">
+      <nav className="header__interactive">
+        <div className="header__home">
           <Link to="/">
             <button
               className="header__home-button"
@@ -165,7 +165,7 @@ const Header = ({
             Sign In
           </button>
         </div>
-      </div>
+      </nav>
     </header>
   );
 };

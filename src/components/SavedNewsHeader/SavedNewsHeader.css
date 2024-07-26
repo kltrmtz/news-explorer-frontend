@@ -69,6 +69,7 @@
 @media screen and (max-width: 480px) {
   .saved__news {
     padding-top: 8px;
+    max-width: 320px;
   }
 
   .article__content {

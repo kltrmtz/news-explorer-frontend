@@ -9,7 +9,7 @@ const SavedNewsCardList = ({ handleCardDelete }) => {
   const { savedCards } = useContext(SavedCardContext);
 
   return (
-    <section className="saved__cards">
+    <div className="saved__cards">
       <div className="saved__cards-content">
         {savedCards
           .filter((card) => card.owner === currentUser._id)
@@ -22,7 +22,7 @@ const SavedNewsCardList = ({ handleCardDelete }) => {
             ></NewsCard>
           ))}
       </div>
-    </section>
+    </div>
   );
 };
 

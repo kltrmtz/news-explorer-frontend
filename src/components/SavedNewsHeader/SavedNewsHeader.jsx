@@ -7,11 +7,17 @@ const SavedNewsHeader = () => {
   const { currentUser } = useContext(CurrentUserContext);
   const { savedCards } = useContext(SavedCardContext);
 
-  const userCards = savedCards.filter((article) => {
-    article.owner === currentUser._id;
+  const userCards = savedCards.filter((card) => {
+    card.owner === currentUser._id;
   });
 
-  const articleArray = userCards.map((article) => article.keyword);
+  const articleArray = userCards.map((card) => card.keyword);
+
+  // const userCards = savedCards.filter((article) => {
+  //   article.owner === currentUser._id;
+  // });
+
+  // const articleArray = userCards.map((article) => article.keyword);
 
   const articleCounter = (keywords) => {
     if (articleArray.length === 0) {
@@ -53,7 +59,7 @@ const SavedNewsHeader = () => {
   const keywordCounter = articleCounter(articleArray);
 
   return (
-    <section className="saved__news-header">
+    <div className="saved__news-header">
       <div className="article__content">
         <h2 className="article__title">Saved articles</h2>
         <p className="article__info">
@@ -61,7 +67,7 @@ const SavedNewsHeader = () => {
         </p>
         <p className="article__keywords">By keywords: {keywordCounter}</p>
       </div>
-    </section>
+    </div>
   );
 };
 export default SavedNewsHeader;

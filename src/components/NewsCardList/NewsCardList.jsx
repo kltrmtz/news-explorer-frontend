@@ -19,7 +19,7 @@ const NewsCardList = ({
   };
 
   return (
-    <section className="results">
+    <div className="results">
       {searched ? (
         <>
           <h2 className="results__title">Search results</h2>
@@ -51,7 +51,7 @@ const NewsCardList = ({
       ) : (
         ""
       )}
-    </section>
+    </div>
   );
 };
 

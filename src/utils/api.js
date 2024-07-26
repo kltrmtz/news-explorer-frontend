@@ -80,11 +80,11 @@ export const baseUrl = "http://localhost:3000";
 
 // stub out
 
-import dog from "/src/images/image_01.svg";
-import mountain from "/src/images/image_02.svg";
-import moose from "/src/images/image_03.svg";
-import forrest from "/src/images/image_04.svg";
-import sky from "/src/images/image_05.svg";
+import dog from "/src/images/image_01.png";
+import mountain from "/src/images/image_02.png";
+import moose from "/src/images/image_03.png";
+import forrest from "/src/images/image_04.png";
+import sky from "/src/images/image_05.png";
 
 export function getSavedCards() {
   return new Promise((resolve, reject) =>

@@ -26,6 +26,9 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   margin-bottom: 64px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .results__button {
@@ -44,13 +47,20 @@
   cursor: pointer;
 }
 
+.results__button:hover {
+  background-color: #e8e8e8;
+}
+
 @media screen and (max-width: 1024px) {
   .results {
+    max-width: 1024px;
     padding: 60px 80px;
   }
 
   .results__cards {
     gap: 8px;
+    display: flex;
+    flex-wrap: wrap;
   }
 }
 
@@ -68,6 +78,7 @@
   .results__cards {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
   }
 }
 
@@ -86,11 +97,12 @@
   .results__cards {
     display: flex;
     flex-direction: column;
-    grid: none;
-    margin: 0 auto;
+    /* justify-content: center; */
+    margin: 0;
     margin-bottom: 16px;
     gap: 10px;
   }
+
   .results__button {
     margin-bottom: 34px;
   }

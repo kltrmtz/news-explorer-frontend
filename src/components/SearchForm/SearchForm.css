@@ -57,7 +57,11 @@
   background-color: #347eff;
 }
 
-@media screen and (min-width: 769px) and (max-width: 1024px) {
+.searchField__button:active {
+  background-color: #2a65cc;
+}
+
+@media screen and (max-width: 1024px) {
   .searchField {
     max-width: 528px;
     /* width: 100%; */
@@ -69,7 +73,7 @@
   }
 }
 
-@media screen and (min-width: 481px) and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .searchField {
     max-width: 448px;
     /* width: 100%; */
@@ -81,7 +85,7 @@
   }
 }
 
-@media screen and (min-width: 320px) and (max-width: 480px) {
+@media screen and (max-width: 480px) {
   .searchField {
     display: flex;
     flex-direction: column;
@@ -102,5 +106,9 @@
     height: 58px;
     top: 72px;
     right: 1px;
+  }
+
+  .searchField__input {
+    width: 236px;
   }
 }

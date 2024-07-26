@@ -77,14 +77,22 @@ button:focus-visible {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  /* place-items: center; */
+  justify-content: center;
   min-width: 320px;
   min-height: 100vh;
   max-width: 100%;
   /* overflow-x: hidden; */
 }
 
-/* * {
+* {
   outline: 1px solid red;
-  
-} */
+  visibility: visible;
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    max-width: 480px;
+    width: 100%;
+  }
+}

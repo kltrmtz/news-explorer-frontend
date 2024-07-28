@@ -1,6 +1,6 @@
 import "./MobileModal.css";
 import { Link } from "react-router-dom/cjs/react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import logout from "/src/images/logout.svg";
 import CurrentPageContext from "/src/contexts/CurrentPageContext.js";
 import CurrentUserContext from "/src/contexts/CurrentUserContext.js";
@@ -11,12 +11,24 @@ const MobileModal = ({
   onCreateSignInModal,
   isLoggedIn,
   onLogOut,
+  handleCloseModal,
+  handleMobileOverlay,
 }) => {
   const { currentUser } = useContext(CurrentUserContext);
   const { currentPage } = useContext(CurrentPageContext);
 
+  useEffect(() => {
+    const handleMobileOverlay = (e) => {
+      if (e.target.classList.contains("modal__mobile")) {
+        handleCloseModal();
+      }
+    };
+    document.addEventListener("click", handleMobileOverlay);
+    return () => document.removeEventListener("click", handleMobileOverlay);
+  }, []);
+
   return isLoggedIn && currentPage === "/" ? (
-    <div className="modal__mobile">
+    <div className="modal__mobile" onClick={handleMobileOverlay}>
       <div className="mobile__content">
         <div className="mobile__header">
           <Link to="/">

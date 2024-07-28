@@ -21,7 +21,7 @@ const Header = ({
   const [isMobile, setIsMobile] = useState(window.outerWidth <= 480);
 
   useEffect(() => {
-    const handleResolutionChange = () => setIsMobile(window.outerWidth <= 480);
+    const handleResolutionChange = () => setIsMobile(window.outerWidth <= 479);
 
     window.addEventListener("resize", handleResolutionChange);
     return () => window.removeEventListener("resize", handleResolutionChange);
@@ -76,7 +76,7 @@ const Header = ({
       </nav>
     </header>
   ) : isLoggedIn && currentPage === "/saved-news" ? (
-    <header className="header__saved">
+    <header className="header header__saved">
       <Link to="/">
         <button type="text" className="header__title-saved">
           NewsExplorer

@@ -9,14 +9,14 @@ const RegisterConfirmationModal = ({
   linkButtonText = "Sign In",
 }) => {
   return (
-    <div className="register__modal" onClick={handleOverlay}>
-      <div className="register__modal-content">
+    <div className="confirmation" onClick={handleOverlay}>
+      <div className="confirmation__content">
         <button
           className="modal__close-button"
           type="button"
           onClick={onClose}
         />
-        <h3 className="register__modal-heading">
+        <h3 className="confirmation__content-heading">
           Registration successfully completed!
         </h3>
         <div className="modal__link">

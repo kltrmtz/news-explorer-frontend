@@ -55,7 +55,7 @@
     max-width: 1024px;
     background-position: top;
     background-size: inherit;
-    margin-bottom: 160px;
+    /* margin-bottom: 160px; */
   }
 
   .main__title {

@@ -6,7 +6,7 @@ import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader.jsx";
 
 const SavedNews = ({ handleDelete, isLoggedIn }) => {
   return (
-    <section className="saved__news">
+    <section className="saved">
       <SavedNewsHeader isLoggedIn={isLoggedIn} />
       <SavedNewsCardList isLoggedIn={isLoggedIn} handleDelete={handleDelete} />
       {/* <NewsCardList isLoggedIn={isLoggedIn} handleDelete={handleDelete} /> */}

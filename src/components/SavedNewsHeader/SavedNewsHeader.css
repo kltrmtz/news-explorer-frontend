@@ -1,4 +1,4 @@
-.saved__news {
+.saved {
   background-color: white;
 }
 
@@ -42,7 +42,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  .saved__news {
+  .saved {
     padding-top: 24px;
     padding-bottom: 32px;
   }
@@ -67,7 +67,7 @@
 }
 
 @media screen and (max-width: 480px) {
-  .saved__news {
+  .saved {
     padding-top: 8px;
     max-width: 320px;
   }

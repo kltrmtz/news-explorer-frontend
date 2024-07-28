@@ -452,6 +452,7 @@ function App() {
                       onCreateSignInModal={handleSignInModal}
                       isLoggedIn={isLoggedIn}
                       onLogOut={handleLogOut}
+                      handleCloseModal={handleCloseModal}
                     />
                   )}
                 </div>

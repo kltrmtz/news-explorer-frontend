@@ -120,8 +120,8 @@ const NewsCard = ({
           alt={cardData.link || cardData.url}
         />
         <div className="card__text">
-          <h3 className="card__title">{cardData.title}</h3>
           <p className="card__date">{publicationDate}</p>
+          <h3 className="card__title">{cardData.title}</h3>
           <p className="card__description">
             {cardData.text || cardData.description}
           </p>

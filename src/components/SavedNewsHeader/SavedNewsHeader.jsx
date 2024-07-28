@@ -59,7 +59,7 @@ const SavedNewsHeader = () => {
   const keywordCounter = articleCounter(articleArray);
 
   return (
-    <div className="saved__news-header">
+    <div className="saved__header">
       <div className="article__content">
         <h2 className="article__title">Saved articles</h2>
         <p className="article__info">

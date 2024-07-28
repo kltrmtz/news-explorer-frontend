@@ -17,7 +17,7 @@ const SavedNewsCardList = ({ handleCardDelete }) => {
             <NewsCard
               cardData={card}
               // key={card._id}
-              key={card.url}
+              key={card.id}
               handleCardDelete={handleCardDelete}
             ></NewsCard>
           ))}

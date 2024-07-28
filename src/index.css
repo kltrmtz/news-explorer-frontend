@@ -85,10 +85,10 @@ body {
   /* overflow-x: hidden; */
 }
 
-* {
+/* * {
   outline: 1px solid red;
   visibility: visible;
-}
+} */
 
 @media screen and (max-width: 480px) {
   body {

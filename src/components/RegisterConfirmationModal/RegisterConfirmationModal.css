@@ -1,4 +1,4 @@
-.register__modal {
+.confirmation {
   position: fixed;
   top: 0;
   right: 0;
@@ -10,7 +10,7 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.register__modal-content {
+.confirmation__content {
   background-color: white;
   max-width: 430px;
   max-height: 182px;
@@ -24,7 +24,7 @@
   /* align-items: center; */
 }
 
-.register__modal-heading {
+.confirmation__content-heading {
   font-family: "Roboto", Arial, sans-serif;
   font-weight: 900;
   font-size: 24px;
